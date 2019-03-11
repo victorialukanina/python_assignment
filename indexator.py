@@ -10,8 +10,7 @@ def indexator(text):
     i = 0
     for token in tokens:
         if token.type is 'Alpha' or token.type is 'Digit':
-		#в базу данных записывается позиция токена, значение сам токен
-	    db[str(i)] = token
-	    i += 1
-	
-return db	
+	    #в базу данных записывается позиция токена, значение сам токен
+            db[str(i)] = token
+            i += 1
+    return db	
