@@ -18,21 +18,20 @@ class Tokenizer:
         for i,s in enumerate(text):
 	    #если символ буквенный
             if s.isalpha():
-                #начинаем счетчик
-                start = i
-                isToken = True
+                if isToken == False:
+                    #начинаем счетчик
+                    start = i
+                    isToken = True
             else:
-	        #если не буквенный
-                if not s.isalpha():
-                    #токен закончился
-                    isToken = False
-                    #Добавляем его в конец списка
-                    tokens.append(Token(text[start:i], start))
-            for token in tokens:
-                print(token.word, token.pos)
-        return tokens	
-        #добавляем последний токен
-        tokens.append(Token(text[start:i+i], start))	
+	        #токен закончился
+                isToken = False
+                #Добавляем его в конец списка
+                tokens.append(Token(start, text[start:i]))
+        if isToken == True:
+            tokens.append(Token(start, text[start:i+1]))
+        for token in tokens:
+            print(token.word, token.pos)
+        return tokens		
 	
 text = "kjhkj huiuhi yuyt"	
 Tokenizer.tokenize(text)
